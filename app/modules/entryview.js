@@ -14,7 +14,11 @@ define(function(require, exports, module) {
       },
       saveNote: function() {
         var $textArea = this.$el.find('textarea');
-        var noteText = $textArea.val();
+        var noteText = $.trim($textArea.val());
+        
+        if (!noteText) {
+          return;
+        }
         
         this.collection.add(new Note({ noteText: noteText }));
         
