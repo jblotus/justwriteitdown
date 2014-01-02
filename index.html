@@ -15,7 +15,30 @@
 
 <body>
   <!-- Application container. -->
-  <main role="main" id="main"></main>
+  <main role="main" id="main">
+  
+      <h1>Just Write it Down</h1>
+      <section id="intro">
+        Go ahead and write some notes
+      </section>
+      
+      <section id="entry">
+          <textarea></textarea>
+          <button class="submit">Save</button>
+      </section>
+      
+      <h2>Your Notes</h2>
+      
+      <section id="notes">
+          <script id="saved-notes" type="text/x-underscore-template">
+            <ul>
+             <% _.each(notes, function(note) { %> 
+               <li data-cid="<%- note.cid %>"><%- note.get('noteText') %> <a class="remove" href="javascript:void(0)">Remove</a></li> 
+             <% }); %>
+            </ul>
+          </script>
+      </section>
+  </main>
 
   <!-- Application source. -->
   <!-- build:[src] /source.min.js -->

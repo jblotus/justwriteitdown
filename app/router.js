@@ -11,7 +11,18 @@ define(function(require, exports, module) {
     },
 
     index: function() {
-      console.log("Welcome to your / route.");
+        
+      var Note = require("modules/note");
+      
+      var models = [];
+      models.push(
+         new Note({
+             foo: 'bar'
+         })
+      );
+      
+      var MainView = require("modules/mainview");
+      var mainView = new MainView({});
     }
   });
 });
