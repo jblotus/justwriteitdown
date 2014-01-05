@@ -11,6 +11,9 @@ define(function(require, exports, module) {
     },
     set: function(key, value) {
       return localStorage.setItem(this.prefix + key, JSON.stringify(value));
+    },
+    delete: function(key) {
+      return localStorage.removeItem(this.prefix + key);
     }
   }
 
