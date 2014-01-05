@@ -10,11 +10,10 @@ define(function(require) {
     var testObj;
       
     beforeEach(function() {
-      testObj = new LocalStorageHelper();
       
-      spyOn(localStorage, 'setItem');
-      spyOn(localStorage, 'getItem');
-      spyOn(localStorage, 'removeItem');
+      localStorage.clear();
+       
+      testObj = new LocalStorageHelper();
     });
     
     it("should exist", function() {
@@ -24,6 +23,8 @@ define(function(require) {
     
     it('should save all items with a prefix of "justwriteitdown-" and JSON stringified', function() {
       var value = 'something';
+      spyOn(localStorage, 'setItem');
+       
       testObj.set(key, value);
       
       expect(localStorage.setItem).toHaveBeenCalledWith('justwriteitdown-' + key, JSON.stringify(value));
@@ -37,8 +38,8 @@ define(function(require) {
 
       var value = JSON.stringify({ 'something' : 'i want' }),
           actual;
-       
-      localStorage.getItem.andCallFake(function() {
+          
+      spyOn(localStorage, 'getItem').andCallFake(function() {
         return value;
       });
       
@@ -48,8 +49,21 @@ define(function(require) {
     });
     
     it('should be able to remove an item using the "justwriteitdown-" prefix', function() {
+      spyOn(localStorage, 'removeItem');
       testObj.delete(key);
       expect(localStorage.removeItem).toHaveBeenCalledWith('justwriteitdown-' + key);
+    });
+    
+    it('should be able to pull all items matching a prefix', function() {
+      
+      var item1 = 'foo';
+      var item2 = {'bar' : 'baz'};
+      localStorage.setItem('justwriteitdown-' + key + '-test', JSON.stringify(item1)); 
+      localStorage.setItem('justwriteitdown-' + key + '-test1', JSON.stringify(item2));
+      
+      var actual = testObj.getItemsByPrefix(key); 
+      expect(actual[0]).toEqual(item1);
+      expect(actual[1]).toEqual(item2);
     });
   });
 });

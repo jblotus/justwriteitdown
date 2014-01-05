@@ -14,6 +14,26 @@ define(function(require, exports, module) {
     },
     delete: function(key) {
       return localStorage.removeItem(this.prefix + key);
+    },
+    getItemsByPrefix: function(key) {
+      var reg = new RegExp('justwriteitdown-(' + key + '-.+)'),
+          items = [], 
+          i,
+          matches;
+          
+      for (i in localStorage) {
+        
+        matches = i.match(reg);
+        if (!matches) { 
+          continue;
+        }
+        
+        if (matches[1] !== undefined) {
+          items.push(this.get(matches[1]));
+        }
+      }
+      
+      return items;
     }
   }
 
