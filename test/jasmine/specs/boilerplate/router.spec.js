@@ -12,6 +12,7 @@ define(function(require) {
 
     it("is a Backbone.Router", function() {
       expect(Router.prototype instanceof Backbone.Router).toBe(true);
+      
     });
   });
 });

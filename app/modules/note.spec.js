@@ -6,8 +6,8 @@ define(function(require) {
 
   describe("Note", function() {
     it("should exist", function() {
-      expect(Note).to.exist;
-      expect(new Note()).to.be.an.instanceof(Note);
+      expect(Note).toBeDefined();
+      expect(new Note() instanceof Note).toBeTruthy();
     });
 
   });
