@@ -42,12 +42,12 @@ define(function(require) {
     });
     
     it('should add the note to the collection correctly', function() {
-      spyOn(testObj.collection, 'add').andCallFake(function(model) {
+      spyOn(testObj.collection, 'create').andCallFake(function(model) {
         expect(model instanceof Note).toBeTruthy();
         expect(model.get('noteText')).toEqual(myNoteText);
       });
       $saveButton.trigger('click');
-      expect(testObj.collection.add).toHaveBeenCalled();
+      expect(testObj.collection.create).toHaveBeenCalled();
     });
     
     it('should save not save a note with no text', function() {

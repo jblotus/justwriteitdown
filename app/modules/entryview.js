@@ -20,7 +20,7 @@ define(function(require, exports, module) {
           return;
         }
         
-        this.collection.add(new Note({ noteText: noteText }));
+        this.collection.create(new Note({ noteText: noteText }));
         
         $textArea.val('');
       },
