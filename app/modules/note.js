@@ -6,11 +6,20 @@ define(function(require, exports, module) {
   var localStorageHelper = new LocalStorageHelper();
  
   var Note = Backbone.Model.extend({
-      sync: function(method, model, options) {
-        if (method === 'create') {
-          localStorageHelper.set('note-' + model.cid, model);
-        }
+    
+    localStorageHelper: localStorageHelper,
+    
+    sync: function(method, model, options) {
+       
+      if (method === 'create') {
+        var id = _.uniqueId('note-');
+        this.set('id', id);
+        this.localStorageHelper.set(id, model);
+        
+      } else if (method === 'delete') {
+        this.localStorageHelper.delete(this.get('id'));
       }
+    }
       
   });
 

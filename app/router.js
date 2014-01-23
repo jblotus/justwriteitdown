@@ -3,6 +3,8 @@ define(function(require, exports, module) {
 
   // External dependencies.
   var Backbone = require("backbone");
+  var MainView = require("modules/mainview");
+  var NoteCollection = require('modules/notecollection');
 
   // Defining the application router.
   module.exports = Backbone.Router.extend({
@@ -11,8 +13,12 @@ define(function(require, exports, module) {
     },
 
     index: function() {
-      var MainView = require("modules/mainview");
-      var mainView = new MainView({});
+      var collection = new NoteCollection();
+      collection.fetch();
+      
+      var mainView = new MainView({
+        collection: collection
+      });
     }
   });
 });

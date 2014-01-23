@@ -4,24 +4,25 @@ define(function(require, exports, module) {
   var Backbone = require('backbone');
   var EntryView = require('modules/entryview');
   var NotesView = require('modules/notesview');
-  var NoteCollection = require('modules/notecollection');
   
   var MainView = Backbone.View.extend({
       el: 'main',
       initialize: function() {
         this.render();  
       },
+      entryView: null,
+      notesView: null,
+      collection: null,
       render: function() {
-          var collection = new NoteCollection();
-          var entryView = new EntryView({
-              collection: collection
-          });
+        this.entryView = new EntryView({
+          collection: this.collection
+        });
+        
+        this.notesView = new NotesView({
+          collection: this.collection
+        });
           
-          var notesView = new NotesView({
-              collection: collection
-         });
-          
-          return this;
+        return this;
       }
   });
 

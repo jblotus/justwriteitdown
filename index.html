@@ -30,13 +30,15 @@
       <h2>Your Notes</h2>
       
       <section id="notes">
-          <script id="saved-notes" type="text/x-underscore-template">
-            <ul>
-             <% _.each(notes, function(note) { %> 
-               <li data-cid="<%- note.cid %>"><%- note.get('noteText') %> <a class="remove" href="javascript:void(0)">Remove</a></li> 
-             <% }); %>
-            </ul>
-          </script>
+      
+        <h5>Loading saved notes...</h5>
+        <script id="saved-notes" type="text/x-underscore-template">
+          <ol>
+           <% _.each(notes, function(note) { %> 
+             <li data-id="<%- note.id %>"><%- note.get('noteText') %> <a class="remove" href="javascript:void(0)">Remove</a></li> 
+           <% }); %>
+          </ol>
+        </script>
       </section>
   </main>
 
