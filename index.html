@@ -35,7 +35,7 @@
         <script id="saved-notes" type="text/x-underscore-template">
           <ol>
            <% _.each(notes, function(note) { %> 
-             <li data-id="<%- note.id %>"><%- note.get('noteText') %> <a class="remove" href="javascript:void(0)">Remove</a></li> 
+             <li data-id="<%- note.id %>"><%- note.get('noteText') %> <a class="remove" href="javascript:void(0)">Remove</a>  <em>Created: <%- note.getFormattedCreationDate() %></em></li> 
            <% }); %>
           </ol>
         </script>

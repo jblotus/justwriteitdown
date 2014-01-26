@@ -2,8 +2,12 @@ define(function(require, exports, module) {
   "use strict";
   
   var Backbone = require('backbone');
+  
   var LocalStorageHelper = require('modules/localstoragehelper');
   var localStorageHelper = new LocalStorageHelper();
+  
+  var moment = require('moment');
+  
  
   var Note = Backbone.Model.extend({
     
@@ -13,6 +17,11 @@ define(function(require, exports, module) {
       return {
         'created_on' : new Date()
       };
+    },
+    
+    getFormattedCreationDate: function() {
+      var date = moment(this.get('created_on'));
+      return date.format('MM/DD/YYYY @ h:mmA');
     },
     
     sync: function(method, model, options) {

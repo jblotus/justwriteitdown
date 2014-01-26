@@ -2,6 +2,7 @@ define(function(require) {
   "use strict";
  
   var Note = require("modules/note");
+  var moment = require('moment');
 
   describe("Note", function() {
     it("should exist", function() {
@@ -47,6 +48,22 @@ define(function(require) {
       expect(createdOn.getYear()).toEqual(comparisonDate.getYear());
       expect(createdOn.getMonth()).toEqual(comparisonDate.getMonth());
       expect(createdOn.getDate()).toEqual(comparisonDate.getDate());
+    });
+    
+    it('should be able to format the date in an easy to read format', function() {
+      
+      var fakeDate = moment();
+      fakeDate.set('year', 1982);
+      fakeDate.set('month', 4);  // May
+      fakeDate.set('date', 11);
+      fakeDate.set('hour', 5);
+      fakeDate.set('minutes', 30);
+
+      var note = new Note({
+        created_on:  fakeDate
+      });
+      var formattedDate = note.getFormattedCreationDate();
+      expect(formattedDate).toEqual('05/11/1982 @ 5:30AM');
     });
   });
 });
