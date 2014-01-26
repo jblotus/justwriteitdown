@@ -9,6 +9,12 @@ define(function(require, exports, module) {
     
     localStorageHelper: localStorageHelper,
     
+    defaults: function() {
+      return {
+        'created_on' : new Date()
+      };
+    },
+    
     sync: function(method, model, options) {
        
       if (method === 'create') {

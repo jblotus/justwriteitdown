@@ -37,6 +37,16 @@ define(function(require) {
       expect(note.localStorageHelper.delete).toHaveBeenCalled();
       
     });
-
+    
+    it('should store a creation date when model created', function() {
+      var comparisonDate = new Date();
+      var note = new Note({});
+      var createdOn = note.get('created_on');
+      expect(createdOn).toBeDefined();
+      expect(createdOn instanceof Date).toBeTruthy();
+      expect(createdOn.getYear()).toEqual(comparisonDate.getYear());
+      expect(createdOn.getMonth()).toEqual(comparisonDate.getMonth());
+      expect(createdOn.getDate()).toEqual(comparisonDate.getDate());
+    });
   });
 });
