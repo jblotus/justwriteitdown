@@ -19,15 +19,19 @@ define(function(require, exports, module) {
       };
     },
     
+    getCreatedOnRaw: function() {
+      return moment(this.get('created_on'));
+    },
+    
     getFormattedCreationDate: function() {
-      var date = moment(this.get('created_on'));
+      var date = this.getCreatedOnRaw();
       return date.format('MM/DD/YYYY @ h:mmA');
     },
     
     sync: function(method, model, options) {
        
       if (method === 'create') {
-        var id = _.uniqueId('note-');
+        var id = 'note-' + this.getCreatedOnRaw();
         this.set('id', id);
         this.localStorageHelper.set(id, model);
         
