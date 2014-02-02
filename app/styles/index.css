@@ -4,3 +4,15 @@
 @import "../../vendor/bower/html5-boilerplate/css/main.css";
 
 /*-- Application stylesheets. -----------------------------------------------*/
+
+section {
+  margin: 1em;
+}
+
+#entry textarea {
+  width: 50%;
+}
+#entry .controls {
+  width: 100%;
+  margin: 1em;
+}
