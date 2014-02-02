@@ -2,7 +2,7 @@ define(function(require, exports, module) {
   "use strict";
   
   var LocalStorageHelper = function() {
-  }
+  };
   
   LocalStorageHelper.prototype = {
     prefix: 'justwriteitdown-',
@@ -35,7 +35,7 @@ define(function(require, exports, module) {
       
       return items;
     }
-  }
+  };
 
   module.exports = LocalStorageHelper;
 });
